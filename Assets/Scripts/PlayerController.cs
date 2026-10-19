@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
     private InputAction moveAction;
     private Vector2 moveInput;
     private Rigidbody2D rigidBody;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     // Adjust physics objects here because we want consistent movement
     // If we did that in `Update()` the objects could move erratically or stutter with variations in frame rate
     void FixedUpdate() {
-        Vector2 velocity = moveInput * speed;
+        Vector2 velocity = moveInput * moveSpeed;
         Vector2 playerPosition = rigidBody.position; // copy the Player position - write back after changing
 
         // Physics move the body by its velocity AFTER `FixedUpdate()`, so clamping the
