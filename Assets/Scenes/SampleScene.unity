@@ -303,6 +303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   player: {fileID: 1713695143}
+  moveSpeed: 3
+  damage: 5
+  cooldown: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +443,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &615866586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4234923181738449835, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+  m_PrefabInstance: {fileID: 3450084343450086956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &615866591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615866586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b402c7b97634ba96a2f26eada6752b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  rb: {fileID: 4748893970090995045, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +561,7 @@ GameObject:
   - component: {fileID: 1713695146}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -658,7 +679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea9bc1c27a2e8c9bb35702d65313ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 5
+  moveSpeed: 5
+  bullet: {fileID: 615866591}
 --- !u!114 &1713695146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +730,66 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!1001 &3450084343450086956
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025124284197530031, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234923181738449835, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      propertyPath: m_Name
+      value: Bullet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4234923181738449835, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 615866591}
+  m_SourcePrefab: {fileID: 100100000, guid: 2abeb299da35c729488dbf432857b4d8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -716,3 +798,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1713695142}
   - {fileID: 29168642}
+  - {fileID: 3450084343450086956}

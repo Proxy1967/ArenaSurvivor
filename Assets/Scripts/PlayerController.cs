@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private Vector2 moveInput;
     private Rigidbody2D rigidBody;
+    [SerializeField] Bullet bullet;
+    private InputAction attackAction;
 
     private float playerHalfSizeX;
     private float playerHalfSizeY;
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
     // Only read Player GameObject components - best used in `Awake()`
     void Awake() {
         moveAction = InputSystem.actions.FindAction("Move");
+        attackAction = InputSystem.actions.FindAction("Attack");
         rigidBody = GetComponent<Rigidbody2D>();
 
         // Using extents because we need half size of Player GameObject
@@ -37,6 +40,15 @@ public class PlayerController : MonoBehaviour
     // `FixedUpdate()` can run 0 or several times per frame, so one-frame events (presses) can be missed or double-counted
     void Update() {
         moveInput = moveAction.ReadValue<Vector2>();
+
+        if(attackAction.WasPressedThisFrame())
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector2 direction = mousePosition-rigidBody.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Bullet newBullet =  Instantiate(bullet, rigidBody.position, Quaternion.Euler(0,0, angle-90));
+            newBullet.Launch(direction.normalized);
+        }
     }
 
     // Adjust physics objects here because we want consistent movement
