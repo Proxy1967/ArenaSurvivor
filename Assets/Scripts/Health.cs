@@ -30,8 +30,16 @@ public class Health : MonoBehaviour
         
         if (currentHealth <= 0)
         {
-            Debug.Log("You died!");
+            if(gameObject.CompareTag("Enemy")) {
+                Debug.Log("Enemy dead");
+                Destroy(gameObject);
+            } 
+            else {
+                Debug.Log("You died!");
+            }
+
             isDead = true;
+
         }
     }
 

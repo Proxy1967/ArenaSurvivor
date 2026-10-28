@@ -44,10 +44,10 @@ public class PlayerController : MonoBehaviour
         if(attackAction.WasPressedThisFrame())
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            Vector2 direction = mousePosition-rigidBody.position;
+            Vector2 direction = (mousePosition-rigidBody.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Bullet newBullet =  Instantiate(bullet, rigidBody.position, Quaternion.Euler(0,0, angle-90));
-            newBullet.Launch(direction.normalized);
+            newBullet.Launch(direction);
         }
     }
 
