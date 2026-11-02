@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyChase : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D player;
+    private Rigidbody2D player;
     private Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private int damage = 5;
@@ -30,5 +30,10 @@ public class EnemyChase : MonoBehaviour
                 timeHit = Time.time;
             }
         }
+    }
+
+    public void SetTarget(Rigidbody2D target)
+    {
+        player = target;
     }
 }
