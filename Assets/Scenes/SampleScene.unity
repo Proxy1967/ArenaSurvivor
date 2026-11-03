@@ -554,8 +554,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd1d39ab11f9c053ad25d513b4484e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemy: {fileID: 825533530447303508, guid: c5b74c1d1da72747d9c4c2e5a125bc70, type: 3}
-  player: {fileID: 1713695140}
+  enemyPrefab: {fileID: 2097868001447938224, guid: c5b74c1d1da72747d9c4c2e5a125bc70, type: 3}
+  player: {fileID: 1713695143}
+  waitTimer: 2
 --- !u!4 &1826585030
 Transform:
   m_ObjectHideFlags: 0
