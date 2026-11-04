@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnRadius = 11f;
     [SerializeField] int waves = 5;
     [SerializeField] int enemiesPerWave = 3;
+    private int aliveEnemies;
+    private Health enemyHealth;
 
     void Start()
     {
@@ -26,11 +28,14 @@ public class EnemySpawner : MonoBehaviour
             {
                 EnemyChase newEnemy = Instantiate(enemyPrefab, Random.insideUnitCircle.normalized * spawnRadius, Quaternion.identity);
                 newEnemy.SetTarget(player);
+                aliveEnemies++;
+                enemyHealth = newEnemy.GetComponent<Health>();
+                enemyHealth.OnDied += HandleEnemyDied;
                 yield return new WaitForSeconds(spawnInterval);
             }
 
             // wait until every enemy is dead
-            yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
+            yield return new WaitUntil(() => aliveEnemies == 0);
             
             // log "Wave X cleared", pause a few seconds
             Debug.Log("Wave " + (i+1) + " cleared");
@@ -39,5 +44,10 @@ public class EnemySpawner : MonoBehaviour
 
         // win conditon met - all waves cleared
         Debug.Log("YOU WIN !");
+    }
+
+    void HandleEnemyDied()
+    {
+        aliveEnemies--;
     }
 }

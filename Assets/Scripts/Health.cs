@@ -1,10 +1,13 @@
 using UnityEngine;
+using System;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     private int currentHealth;
     private bool isDead = false;
+    public event Action OnDied;
+    public event Action<int, int> OnHealthChanged; // current, max
 
 
     void Awake()
@@ -27,19 +30,12 @@ public class Health : MonoBehaviour
 
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
         
         if (currentHealth <= 0)
         {
-            if(gameObject.CompareTag("Enemy")) {
-                Debug.Log("Enemy dead");
-                Destroy(gameObject);
-            } 
-            else {
-                Debug.Log("You died!");
-            }
-
+            OnDied?.Invoke();
             isDead = true;
-
         }
     }
 

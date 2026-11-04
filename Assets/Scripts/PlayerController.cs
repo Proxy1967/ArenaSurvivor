@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidBody;
     [SerializeField] Bullet bullet;
     private InputAction attackAction;
+    private Health health;
 
     private float playerHalfSizeX;
     private float playerHalfSizeY;
@@ -25,6 +26,9 @@ public class PlayerController : MonoBehaviour
         Bounds bounds = GetComponent<SpriteRenderer>().bounds;
         playerHalfSizeX = bounds.extents.x;
         playerHalfSizeY = bounds.extents.y;
+
+        health = GetComponent<Health>();
+        health.OnDied += HandleDeath;
     }
 
     // Player GameObject interacts with other GameObjects - best used in `Start()`
@@ -85,5 +89,13 @@ public class PlayerController : MonoBehaviour
         
         // Write the Player position back inside its Component
         rigidBody.position = playerPosition;
+    }
+
+    void HandleDeath()
+    {
+        Debug.Log("You died!");
+        rigidBody.linearVelocity = Vector2.zero;
+        rigidBody.simulated = false;
+        enabled = false;
     }
 }

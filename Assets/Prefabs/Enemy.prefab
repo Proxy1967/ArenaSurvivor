@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 377291238517037351}
   - component: {fileID: 8959395617973735332}
   - component: {fileID: 2097868001447938224}
+  - component: {fileID: 7627368120748409892}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -183,7 +184,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7715b8f0ee673a0b3af3fbd50c0d7387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
-  player: {fileID: 0}
   moveSpeed: 3
   damage: 5
   cooldown: 1
+--- !u!114 &7627368120748409892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825533530447303508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d3efc1884b6cde682cc4e59863a872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnDeath
