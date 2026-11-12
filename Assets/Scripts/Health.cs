@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class Health : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Health : MonoBehaviour
     private bool isDead = false;
     public event Action OnDied;
     public event Action<int, int> OnHealthChanged; // current, max
+    private bool isInvincible;
+    private float invincibleTime = 1f;
 
 
     void Awake()
@@ -17,7 +20,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if(isDead)
+        if(isDead || isInvincible)
         {
             return;
         }
@@ -30,6 +33,7 @@ public class Health : MonoBehaviour
 
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth);
+        StartCoroutine(Invincible());
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
         
         if (currentHealth <= 0)
@@ -37,6 +41,13 @@ public class Health : MonoBehaviour
             OnDied?.Invoke();
             isDead = true;
         }
+    }
+
+    IEnumerator Invincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
     }
 
     public int GetMaxHealth()
@@ -47,6 +58,11 @@ public class Health : MonoBehaviour
     public int GetCurrentHealth()
     {
         return currentHealth;
+    }
+
+    public float GetInvincibleTime()
+    {
+        return invincibleTime;
     }
 
     [ContextMenu("Take 10 Damage")]
