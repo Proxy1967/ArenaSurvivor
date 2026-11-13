@@ -1607,6 +1607,7 @@ GameObject:
   - component: {fileID: 1713695147}
   - component: {fileID: 1713695145}
   - component: {fileID: 1713695146}
+  - component: {fileID: 1713695148}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1742,6 +1743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 30
+  invincibleTime: 1
 --- !u!58 &1713695147
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1778,6 +1780,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &1713695148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713695140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d098ef637c714b88d9c11a190854b4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageBlink
+  blinkInterval: 0.1
 --- !u!1 &1754665518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,7 +2044,7 @@ MonoBehaviour:
   wavePause: 3
   winPause: 1
   spawnRadius: 11
-  waves: 2
+  waves: 5
   enemiesPerWave: 3
 --- !u!4 &1826585030
 Transform:

@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     public event Action OnDied;
     public event Action<int, int> OnHealthChanged; // current, max
     private bool isInvincible;
-    private float invincibleTime = 1f;
+    [SerializeField] private float invincibleTime = 0f;
 
 
     void Awake()
